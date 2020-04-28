@@ -1,13 +1,20 @@
-class Transaction {
-  final String accountNumber;
-  final double amount;
+import 'package:bankapp/models/contact.dart';
 
-  Transaction(
-    this.accountNumber,
-    this.amount,
-  );
+class Transaction {
+  final double value;
+  final Contact contact;
+
+  Transaction(this.value, this.contact);
 
   @override
-  String toString() =>
-      'Transaction{accountNumber: $accountNumber, amount: $amount}';
+  String toString() => 'Transaction{value: $value, contact: $contact}';
+
+  Transaction.fromJson(Map<String, dynamic> json)
+      : value = json['value'],
+        contact = Contact.fromJson(json['contact']);
+
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        'contact': contact.toJson(),
+      };
 }
